@@ -35,7 +35,6 @@ const testimonialsModalFunc = function () {
 
 // add click event to all modal items
 for (let i = 0; i < testimonialsItem.length; i++) {
-
   testimonialsItem[i].addEventListener("click", function () {
 
     modalImg.src = this.querySelector("[data-testimonials-avatar]").src;
@@ -44,9 +43,7 @@ for (let i = 0; i < testimonialsItem.length; i++) {
     modalText.innerHTML = this.querySelector("[data-testimonials-text]").innerHTML;
 
     testimonialsModalFunc();
-
   });
-
 }
 
 // add click event to modal close button
@@ -91,7 +88,7 @@ const filterFunc = function (selectedValue) {
     }
 
   }
-
+  updateNumbering(); // Update numbering after filtering
 }
 
 // add event in all filter button items for large screen
@@ -157,3 +154,18 @@ for (let i = 0; i < navigationLinks.length; i++) {
 
   });
 }
+
+const updateNumbering = function () {
+  // Select all active project items
+  const activeItems = document.querySelectorAll(".project-item.active");
+  // Iterate over each active item and update its numbering
+  activeItems.forEach((item, index) => {
+    // Assuming you have a <span class="project-number"></span> inside each .project-item
+    const numberSpan = item.querySelector(".project-number");
+    if (numberSpan) {
+      numberSpan.textContent = `${index + 1}. `;
+    }
+  });
+};
+
+updateNumbering();
